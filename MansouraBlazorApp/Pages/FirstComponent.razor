@@ -1,0 +1,44 @@
+﻿@page "/First"
+<PageTitle>First Page</PageTitle>
+
+<h3>FirstComponent</h3>
+<!--HTML-->
+<input type="button" value="Click ME" class="btn btn-success" @onclick='()=>ShowMsg("Christen")'/><br />
+<!--Binding-->
+<h2 style="color:blue">One Way Binding from C# ==> HTML</h2>
+<h4>@Message</h4>
+<input type="text" class="form form-control" value="@Message"/>
+<br />
+<hr />
+<br />
+<h2 style="color:blue">Two Way Binding C# to HTML  and HTML to C#</h2>
+<!--input tag only-->
+<input type="text" class="form form-control" @bind-value="@Message" />
+<!--Select tag && input-->
+<input type="text" class="form form-control" @bind="@Message" />
+<br />
+<hr />
+<br />
+<h2 style="color:blue">Two Way Binding With update</h2>
+<input type="text" class="form form-control" @bind-value="@Message" @bind-value:event="oninput" />
+<input type="text" class="form form-control" @bind="@Message" @bind:event="oninput" />
+
+@code {
+    //C#
+    public string Message { get; set; } = "Hello";
+
+
+    void ShowMsg(string name)
+    {
+        Message = "Message Change Welcome :))))))";
+        Console.WriteLine($"Hello FRom My first Button C# Click {name}");
+    }
+}
+
+
+<!--
+    Title
+    H1 : h6
+    micro
+    Meta
+-->
