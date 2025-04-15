@@ -1,0 +1,15 @@
+﻿
+<div  style="margin:5px;border:5px solid blue">
+    <h3>Child</h3>
+    <h4>@Msg</h4>
+    <h4>@Id</h4>
+</div>
+
+@code {
+    //[Parameter]//url || direct parent attribute
+    [CascadingParameter(Name ="Message")]//at any top level
+    public string Msg { get; set; } = "Default from Child";
+
+    [CascadingParameter(Name ="Id")]
+    public int Id { get; set; }
+}

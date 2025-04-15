@@ -1,0 +1,39 @@
+﻿@page "/std/Details/{id:int}/{name}"
+
+<h3>StdDetailsComponent</h3>
+<h2>@id</h2>
+<h2>@name</h2>
+@code {
+    //1) add placeholdeer in url
+    //2) declare property with the same placeholder name
+    [Parameter]
+    public int id { get; set; } 
+
+    [Parameter]
+    public string name { get; set; }
+
+    public StdDetailsComponent()
+    {
+        Console.WriteLine($"1- Constructor id={id}\tname={name}");
+        //can't used this pamanete in  some logic depend on paramter (url | Parent Componet)
+    }
+    public override Task SetParametersAsync(ParameterView parameters)//collect data url + IOC + Parent Copone
+    {
+        Console.WriteLine($"2- SetParametersAsync id={id}\tname={name}");
+
+        return base.SetParametersAsync(parameters);// paremeter iniatliaytion + inject sreivces creation 
+    }
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine($"4- OnParametersSet id={id}\tname={name}");
+
+        base.OnParametersSet();
+    }
+    protected override void OnInitialized()
+    {
+        Console.WriteLine($"3- OnInitialized id={id}\tname={name}");
+
+        base.OnInitialized();
+    }
+
+}

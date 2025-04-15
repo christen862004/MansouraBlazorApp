@@ -1,0 +1,15 @@
+﻿@page "/p3"
+<h3>Parent</h3>
+<Child MessageChangeEvent="MEssageChangeHAndeller"></Child>
+<br />
+<h4>@ParentMessage</h4>
+
+@code {
+    public string ParentMessage { get; set; }
+
+    void MEssageChangeHAndeller(string msg)
+    {
+        ParentMessage = msg;
+        //get list
+    }
+}

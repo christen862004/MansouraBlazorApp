@@ -1,0 +1,11 @@
+﻿@page "/p1"
+<h3>Parent</h3>
+<input class="form form-control" @bind-value="PMessage" />
+
+<Child Msg="Msg From Parent"></Child>
+
+<Child Msg="@PMessage"></Child>
+
+@code {
+    public string PMessage { get; set; }
+}

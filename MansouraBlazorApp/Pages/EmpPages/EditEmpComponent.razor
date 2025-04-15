@@ -1,0 +1,59 @@
+﻿@page "/Emps/Edit/{id:int}"
+<h3>EditEmpComponent</h3>
+
+@if (Emp != null)
+{
+    <EditForm Model="Emp" OnSubmit="Save">
+        <div>
+            <label>Name</label>
+            <InputText class="form form-control" @bind-Value="Emp.Name"></InputText>
+        </div>
+        <div>
+            <label>Image</label>
+            <InputText class="form form-control" @bind-Value="Emp.ImageUrl"></InputText>
+        </div>
+        <div>
+            <label>Salary</label>
+            <InputNumber class="form form-control" @bind-Value="Emp.Salary"></InputNumber>
+        </div>
+        <div>
+            <label>Dempartment</label>
+            <InputNumber class="form form-control" @bind-Value="Emp.DeptartmentID"></InputNumber>
+        </div>
+        <input type="submit" value="Save" class="btn btn-success" />
+    </EditForm>
+
+    <h4>@Emp</h4>
+}
+else
+{
+    <h1>Wait .. or invalid id </h1>
+}
+
+<a href="\emps">Back To List</a>
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    [Inject]
+    public IService<Employee> EmpService { get; set; }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }//built in service s already register
+
+    public Employee Emp { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Emp = EmpService.GetById(id);
+        base.OnInitialized();
+    }
+
+    void Save()
+    {
+        //Api Put
+        Console.WriteLine("Data Save");
+        //return back to Emps Component
+        NavManager.NavigateTo("/Emps");
+    }
+}

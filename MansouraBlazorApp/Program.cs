@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -13,6 +14,8 @@ namespace MansouraBlazorApp
             builder.RootComponents.Add<App>("#app");//index.html<elem id="app"></elem>
             //SPA (Change component title <PAgeTitle>
             builder.RootComponents.Add<HeadOutlet>("head::after");
+
+            builder.Services.AddScoped<IService<Employee>, EmployeeService>();
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

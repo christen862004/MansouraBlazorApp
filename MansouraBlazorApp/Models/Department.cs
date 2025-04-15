@@ -8,6 +8,6 @@
 
         public string ManagerName { get; set; }
         
-        public string ImageURl { get; set; }
+        public string? ImageURl { get; set; }
     }
 }

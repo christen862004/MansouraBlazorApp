@@ -1,0 +1,21 @@
+﻿@page "/GP1"
+
+<h3>GParent</h3>
+<Parent></Parent>
+<hr />
+<CascadingValue Name="Message" Value="PMsg">
+    <CascadingValue Name="Id" Value="10">
+        <Parent Msg1="11" Msg2="22"></Parent>
+    </CascadingValue>
+</CascadingValue>
+
+<hr />
+
+<CascadingValue Name="Id" Value="30">
+    <Parent></Parent>
+</CascadingValue>
+
+@code {
+    //'@("Hello")'
+    public string PMsg { get; set; } = "hello from Grand Parent";
+}

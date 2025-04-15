@@ -1,0 +1,47 @@
+﻿@page "/Emps"
+<PageTitle>Employees Page</PageTitle>
+
+<h3>EmpsComponent</h3>
+@if (EmpList != null)
+{
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Details</th>
+        </tr>
+        @foreach (var item in EmpList)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td><img style="width:100px" src="/Assets/@item.ImageUrl"/></td>
+                <td>
+                    <a href="/emps/details/@item.Id">DEtails</a>
+                </td>
+                <td>
+                    <a href="/emps/edit/@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h1>Wait...</h1>
+}
+
+
+@code {
+    public List<Employee> EmpList { get; set; }
+
+    [Inject]
+    public IService<Employee> EmpService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        EmpList = EmpService.GetAll();
+        base.OnInitialized();
+    }
+}
